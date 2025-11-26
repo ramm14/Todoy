@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
+</head>
+<body>
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link active " aria-disabled="false" href="{{ url_for('home')}}">Home</a>
+        </li>
+      </ul>
+    <div class="container-fluid heading">
+
+    </div>
+    <main id="sexction">
+        {% if todo_items|length >= 1%}
+            {% for todo in todo_items %}
+                <div class="container-fluid todo">
+                    <div class="mb-3 ">
+                        <label class="form-check-label">{{ todo.title }} </label>
+                        <p>{{ todo.description }} </p>
+                        <a class="editBtn" href = "{{ url_for('edit_todo', todo_index=todo.id)}}">EDIT</a>
+                        <a class="deleteBtn editBtn" href = "{{ url_for('delete_todo', todo_index=todo.id)}}">DELETE</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+<!--        <div class="todo container-fluid todo">-->
+<!--            <div class="mb-3 box">-->
+<!--                <label class="form-check-label" >Check me out</label>-->
+<!--                <input type="checkbox" class="form-check-input Check">-->
+<!--                <p>Description on what you want to get done</p>-->
+<!--                </div>-->
+<!--        </div>-->
+        {% endif %}
+        <div id="addtodoy" class="container">
+            <a  class="pageButton" id="addTodoLink" href="{{ url_for('add_todo') }}">Add Todo</a>
+        </div>
+    </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src = "static/js/appp.js"></script>
+
+</body>
+</html>
